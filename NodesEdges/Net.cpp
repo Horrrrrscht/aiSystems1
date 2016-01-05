@@ -24,6 +24,8 @@ void Net::backProp(const vector<double> &targetVals) {};
 void Net::getResults(vector<double> &resultVals) {};
 
 
+// Bratwurst
+
 Net::~Net()
 {
 }
