@@ -44,5 +44,8 @@
     <ClCompile Include="Net.cpp">
       <Filter>Graph</Filter>
     </ClCompile>
+    <ClCompile Include="Neuron.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
