@@ -67,14 +67,20 @@ public:
 	void feedForward(const Layer &prevLayer);
 	void calcOutputGradients(double targetVal);
 	void calcHiddenGradients(const Layer &nextLayer);
+	void updateInputWeights(Layer &prevLayer);
+	vector<Connection> &getOutputWeights() { return m_outputWeights; }
+	vector<Connection> m_outputWeights;
 	~Neuron();
 
 private:
+	static double eta;
+	static double alpha;
 	static double transferFunction(double x);
 	static double transferFunctionDerivative(double x);
 	static double randomWeight(void) { return rand() / double(RAND_MAX); }
+	double sumDOW(const Layer &nextLayer) const ;
 	double m_outputVal;
-	vector<Connection> m_outputWeights;
+	//vector<Connection> m_outputWeights;
 	unsigned m_myIndex;
 	double m_gradient;
 };

@@ -8,15 +8,21 @@ Net::Net(const vector<unsigned> &topology)
 
 	unsigned numLayers = topology.size();
 	for (unsigned layerNum = 0; layerNum < numLayers; ++layerNum) {
-		unsigned numOutputs = layerNum == topology.size() - 1 ? 0 : topology[layerNum + 1];
+		
 		m_layers.push_back(Layer());
+		unsigned numOutputs = layerNum == topology.size() - 1 ? 0 : topology[layerNum + 1];
+		
 
 		for (unsigned neuronNum = 0; neuronNum <= topology[layerNum]; ++neuronNum) {
 
 			m_layers.back().push_back(Neuron(numOutputs, neuronNum));
 			cout << "Made a Neuron!" << endl;
 		}
+
+		m_layers.back().back().setOutputVal(1.0);
 	}
+
+
 
 }
 
@@ -26,16 +32,38 @@ void Net::feedForward(const vector<double> &inputVals) {
 
 	for (unsigned i = 0; i < inputVals.size(); ++i) {
 
-		m_layers[0][i].setOutputVals(inputVals[i]);
+		m_layers[0][i].setOutputVal(inputVals[i]);
 	}
 
+
+
 	for (unsigned layerNum = 1; layerNum < m_layers.size(); ++layerNum) {
+
 		Layer &prevLayer = m_layers[layerNum - 1];
+
 		for (unsigned n = 0; n < m_layers[layerNum].size() - 1; ++n) {
 			m_layers[layerNum][n].feedForward(prevLayer);
 		}
 	}
-};
+
+	cout << "Neuronen Info: " << endl;
+
+	for (unsigned layerNum = 0; layerNum < m_layers.size(); ++layerNum) {
+
+		cout << "Layer " << layerNum << endl;
+
+		for (unsigned n = 0; n < m_layers[layerNum].size(); ++n) {
+
+			cout << "Neuron " << n << endl;
+
+			for (unsigned k = 0; k < m_layers[layerNum][n].m_outputWeights.size(); ++k) {
+
+				cout << "Weight " << k << " : " << m_layers[layerNum][n].m_outputWeights[k].weight << endl;
+			}
+		}
+	}
+}
+
 void Net::backProp(const vector<double> &targetVals) {
 
 	Layer &outputLayer = m_layers.back();
@@ -76,15 +104,23 @@ void Net::backProp(const vector<double> &targetVals) {
 
 		for (unsigned n = 0; n < layer.size() - 1; ++n) {
 
-			layer[n].updateInputWeigts(prevLayer);
+			layer[n].updateInputWeights(prevLayer);
 		}
 	}
 
 };
-void Net::getResults(vector<double> &resultVals) {};
+void Net::getResults(vector<double> &resultVals) {
+
+	resultVals.clear();
+
+	for (unsigned n = 0; n < m_layers.back().size() - 1; ++n) {
+
+		resultVals.push_back(m_layers.back()[n].getOutputVal());
+	}
+
+};
 
 
-// Bratwurst
 
 Net::~Net()
 {

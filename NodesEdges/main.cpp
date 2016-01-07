@@ -6,6 +6,7 @@
 
 #include "Node.h"
 #include "Graph.h"
+#include "FileReader.h"
 
 int main()
 {
@@ -26,23 +27,53 @@ int main()
 	std::cout << g.toString() << std::endl;
 
 	///////////////////////////////////////////////////////////////////
+	
+ 	vector<vector<double>> sampleData = FileReader::readData("SampleData1.csv");
+	vector<double> inputVals;
+	vector<double> targetVals;
+
+	//for (unsigned n = 0; n < sampleData.size(); ++n) {
+
+		inputVals.push_back(sampleData[0][0]);
+		inputVals.push_back(sampleData[0][1]);
+		targetVals.push_back(sampleData[0][2]);
+
+
+
+
+
+		//for (unsigned k = 0; k < sampleData[n].size(); ++k) {
+
+		//	cout << sampleData[n][k] ;
+		//}
+
+		//cout << endl;
+	//}
+
+	///////////////////////////////////////////////////////////////////
+
+	
 
 	vector<unsigned> topology;
-	topology.push_back(3);
 	topology.push_back(2);
+	topology.push_back(4);
 	topology.push_back(1);
 	Net myNet(topology);
 
-	vector<double> inputVals;
+	//
+
+	cout << "------------------------------------------------------" << endl;
+	cout << "Step 1" << endl;
 	myNet.feedForward(inputVals);
 
-	vector<double> targetVals;
 	myNet.backProp(targetVals);
 
-	//vector<double> resultVals;
-	//myNet.getResults(resultVals);
+	cout << "------------------------------------------------------" << endl;
 
+	vector<double> resultVals;
+	myNet.getResults(resultVals);
 
+	 
 
 
 
