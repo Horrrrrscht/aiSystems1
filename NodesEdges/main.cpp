@@ -28,16 +28,40 @@ int main()
 
 	///////////////////////////////////////////////////////////////////
 	
+	vector<unsigned> topology;
+	topology.push_back(2);
+	topology.push_back(4);
+	topology.push_back(1);
+	Net myNet(topology);
+
  	vector<vector<double>> sampleData = FileReader::readData("SampleData1.csv");
-	vector<double> inputVals;
-	vector<double> targetVals;
+	
+	
+	
+	// for (unsigned n = 0; n < sampleData.size() - 1; ++n) {
+	for (unsigned n = 0; n < 5; ++n) {
 
-	//for (unsigned n = 0; n < sampleData.size(); ++n) {
+		vector<double> inputVals;
+		inputVals.push_back(sampleData[n][0]);
+		inputVals.push_back(sampleData[n][1]);
+		vector<double> targetVals;
+		targetVals.push_back(sampleData[n][2]);
 
-		inputVals.push_back(sampleData[0][0]);
-		inputVals.push_back(sampleData[0][1]);
-		targetVals.push_back(sampleData[0][2]);
+		cout << "------------------------------------------------------" << endl;
+		cout << "Step " << n <<  endl;
+		myNet.feedForward(inputVals);
 
+		myNet.backProp(targetVals);
+
+		vector<double> resultVals;
+		myNet.getResults(resultVals);
+
+		cout << "Input Values : " << sampleData[n][0] << " " << sampleData[n][1] << endl;
+		cout << "Target Value : " << sampleData[n][2]  << endl;
+		cout << "Output Value : " << resultVals[0] << endl;
+
+
+		cout << "------------------------------------------------------" << endl;
 
 
 
@@ -48,27 +72,20 @@ int main()
 		//}
 
 		//cout << endl;
-	//}
+	}
 
 	///////////////////////////////////////////////////////////////////
 
 	
 
-	vector<unsigned> topology;
-	topology.push_back(2);
-	topology.push_back(4);
-	topology.push_back(1);
-	Net myNet(topology);
+
 
 	//
 
-	cout << "------------------------------------------------------" << endl;
-	cout << "Step 1" << endl;
-	myNet.feedForward(inputVals);
 
-	myNet.backProp(targetVals);
 
-	cout << "------------------------------------------------------" << endl;
+
+
 
 	vector<double> resultVals;
 	myNet.getResults(resultVals);

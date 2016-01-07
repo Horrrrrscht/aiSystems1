@@ -49,6 +49,7 @@ public:
 	void feedForward(const vector<double> &inputVals);
 	void backProp(const vector<double> &targetVals);	
 	void getResults(vector<double> &resultVals) ;
+	void printNet();
 
 	~Net();
 

@@ -46,7 +46,13 @@ void Net::feedForward(const vector<double> &inputVals) {
 		}
 	}
 
-	cout << "Neuronen Info: " << endl;
+	printNet();
+}
+
+void Net::printNet() {
+
+
+	cout << "Net Info: " << endl;
 
 	for (unsigned layerNum = 0; layerNum < m_layers.size(); ++layerNum) {
 
@@ -108,6 +114,7 @@ void Net::backProp(const vector<double> &targetVals) {
 		}
 	}
 
+	printNet();
 };
 void Net::getResults(vector<double> &resultVals) {
 
