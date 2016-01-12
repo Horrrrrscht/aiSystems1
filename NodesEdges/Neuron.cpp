@@ -3,7 +3,7 @@
 
 using namespace std;
 
-double Neuron::eta = 0.15;
+double Neuron::eta = 0.05;
 double Neuron::alpha = 0.5;
 
 
@@ -35,7 +35,7 @@ void Neuron::feedForward(const Layer &prevLayer) {
 
 double Neuron::transferFunction(double x) {
 
-	return tanh(x);
+	return tanh(x/10);
 }
 
 double Neuron::transferFunctionDerivative(double x) {

@@ -27,17 +27,24 @@ int main()
 	std::cout << g.toString() << std::endl;
 
 	///////////////////////////////////////////////////////////////////
+
+	ofstream myfile;
+	myfile.open("example.txt");
+	myfile << "Writing this to a file.\n";
+	
+
+	///////////////////////////////////////////////////////////////////
 	
 	vector<unsigned> topology;
-	topology.push_back(2);
-	topology.push_back(8);
+	topology.push_back(4);
+	topology.push_back(10);
 	topology.push_back(1);
 	Net myNet(topology);
 
- 	vector<vector<double>> sampleData = FileReader::readData("SampleData1.csv");
+ 	vector<vector<double>> sampleData = FileReader::readData("SampleData2.csv");
 	
-	
-	for (unsigned j = 0; j < 5; ++j) {
+	int stepcounter = 0;
+	for (unsigned j = 0; j < 100; ++j) {
 
 		for (unsigned n = 0; n < sampleData.size() - 1; ++n) {
 
@@ -47,11 +54,14 @@ int main()
 			vector<double> inputVals;
 			inputVals.push_back(sampleData[n][0]);
 			inputVals.push_back(sampleData[n][1]);
+			inputVals.push_back(sampleData[n][2]);
+			inputVals.push_back(sampleData[n][3]);
 			vector<double> targetVals;
-			targetVals.push_back(sampleData[n][2]);
-
-			cout << "------------------------------------------------------" << endl;
-			cout << "Step " << n << endl;
+			targetVals.push_back(sampleData[n][4]);
+			++stepcounter;
+			//cout << "------------------------------------------------------" << endl;
+			// cout << "Step " << stepcounter << endl;
+			
 			myNet.feedForward(inputVals);
 
 			myNet.backProp(targetVals);
@@ -59,12 +69,18 @@ int main()
 			vector<double> resultVals;
 			myNet.getResults(resultVals);
 
-			cout << "Input Values : " << sampleData[n][0] << " " << sampleData[n][1] << endl;
-			cout << "Target Value : " << sampleData[n][2] << endl;
-			cout << "Output Value : " << resultVals[0] << endl;
+			myfile << "Step " << stepcounter << "Input Values : " << sampleData[n][0] << " " << sampleData[n][1] << " " << sampleData[n][2] << " " << sampleData[n][3] << "Target Value : " << sampleData[n][4] << " " << "Output Value : " << resultVals[0] << endl;
+			
+			
+				
+			
+			
+			
+			//cout << "Target Value : " << sampleData[n][2] << endl;
+			//cout << "Output Value : " << resultVals[0] << endl;
 
 
-			cout << "------------------------------------------------------" << endl;
+			//cout << "------------------------------------------------------" << endl;
 
 
 
@@ -90,7 +106,7 @@ int main()
 
 
 
-
+	myfile.close();
 	vector<double> resultVals;
 	myNet.getResults(resultVals);
 

@@ -46,7 +46,7 @@ void Net::feedForward(const vector<double> &inputVals) {
 		}
 	}
 
-	printNet();
+	//printNet();
 }
 
 void Net::printNet() {
@@ -114,7 +114,7 @@ void Net::backProp(const vector<double> &targetVals) {
 		}
 	}
 
-	printNet();
+	//printNet();
 };
 void Net::getResults(vector<double> &resultVals) {
 
