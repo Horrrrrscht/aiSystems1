@@ -30,48 +30,52 @@ int main()
 	
 	vector<unsigned> topology;
 	topology.push_back(2);
-	topology.push_back(4);
+	topology.push_back(8);
 	topology.push_back(1);
 	Net myNet(topology);
 
  	vector<vector<double>> sampleData = FileReader::readData("SampleData1.csv");
 	
 	
-	
-	// for (unsigned n = 0; n < sampleData.size() - 1; ++n) {
-	for (unsigned n = 0; n < 5; ++n) {
+	for (unsigned j = 0; j < 5; ++j) {
 
-		vector<double> inputVals;
-		inputVals.push_back(sampleData[n][0]);
-		inputVals.push_back(sampleData[n][1]);
-		vector<double> targetVals;
-		targetVals.push_back(sampleData[n][2]);
-
-		cout << "------------------------------------------------------" << endl;
-		cout << "Step " << n <<  endl;
-		myNet.feedForward(inputVals);
-
-		myNet.backProp(targetVals);
-
-		vector<double> resultVals;
-		myNet.getResults(resultVals);
-
-		cout << "Input Values : " << sampleData[n][0] << " " << sampleData[n][1] << endl;
-		cout << "Target Value : " << sampleData[n][2]  << endl;
-		cout << "Output Value : " << resultVals[0] << endl;
+		for (unsigned n = 0; n < sampleData.size() - 1; ++n) {
 
 
-		cout << "------------------------------------------------------" << endl;
+			//for (unsigned n = 0; n < 5; ++n) {
+
+			vector<double> inputVals;
+			inputVals.push_back(sampleData[n][0]);
+			inputVals.push_back(sampleData[n][1]);
+			vector<double> targetVals;
+			targetVals.push_back(sampleData[n][2]);
+
+			cout << "------------------------------------------------------" << endl;
+			cout << "Step " << n << endl;
+			myNet.feedForward(inputVals);
+
+			myNet.backProp(targetVals);
+
+			vector<double> resultVals;
+			myNet.getResults(resultVals);
+
+			cout << "Input Values : " << sampleData[n][0] << " " << sampleData[n][1] << endl;
+			cout << "Target Value : " << sampleData[n][2] << endl;
+			cout << "Output Value : " << resultVals[0] << endl;
+
+
+			cout << "------------------------------------------------------" << endl;
 
 
 
 
-		//for (unsigned k = 0; k < sampleData[n].size(); ++k) {
+			//for (unsigned k = 0; k < sampleData[n].size(); ++k) {
 
-		//	cout << sampleData[n][k] ;
-		//}
+			//	cout << sampleData[n][k] ;
+			//}
 
-		//cout << endl;
+			//cout << endl;
+		}
 	}
 
 	///////////////////////////////////////////////////////////////////
