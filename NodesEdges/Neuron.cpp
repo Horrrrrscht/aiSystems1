@@ -3,13 +3,13 @@
 
 using namespace std;
 
-double Neuron::eta = 0.05;
+double Neuron::learningRate = 0.05;
 double Neuron::alpha = 0.5;
 
 
 
 
-Neuron::Neuron(unsigned numOutputs, unsigned myIndex)
+Neuron::Neuron(unsigned numOutputs, unsigned myId)
 {
 	for (unsigned c = 0; c < numOutputs; ++c) {
 		m_outputWeights.push_back(Connection());
@@ -17,7 +17,7 @@ Neuron::Neuron(unsigned numOutputs, unsigned myIndex)
 		cout << m_outputWeights.back().weight << endl;
 	}
 
-	m_myIndex = myIndex;
+	m_id = myId;
 }
 
 void Neuron::feedForward(const Layer &prevLayer) {
@@ -27,7 +27,7 @@ void Neuron::feedForward(const Layer &prevLayer) {
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
 		sum +=	prevLayer[n].getOutputVal() *
-				prevLayer[n].m_outputWeights[m_myIndex].weight;
+				prevLayer[n].m_outputWeights[m_myIndex].strength;
 	}
 
 	m_outputVal = Neuron::transferFunction(sum);
@@ -61,7 +61,7 @@ double Neuron::sumDOW(const Layer &nextLayer) const {
 
 	for (unsigned n = 0; n < nextLayer.size() - 1; ++n) {
 
-		sum += m_outputWeights[n].weight * nextLayer[n].m_gradient;
+		sum += m_outputWeights[n].strength * nextLayer[n].m_gradient;
 	}
 
 	return sum;
@@ -72,16 +72,16 @@ void Neuron::updateInputWeights(Layer &prevLayer) {
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
 		Neuron &neuron = prevLayer[n];
-		double oldDeltaWeight = neuron.m_outputWeights[m_myIndex].deltaWeight;
+		double oldDeltaStrength = neuron.m_outputWeights[m_myIndex].deltastrength;
 		
-		double newDeltaWeight = eta
+		double newDeltaStrength = learningRate
 			* neuron.getOutputVal()
-			* m_gradient
+			* m_steigung
 			+ alpha
-			* oldDeltaWeight;
+			* oldDeltaStrength;
 
-		neuron.m_outputWeights[m_myIndex].deltaWeight = newDeltaWeight;
-		neuron.m_outputWeights[m_myIndex].weight += newDeltaWeight;
+		neuron.m_outputWeights[m_myIndex].deltaWeight = newDeltaStrength;
+		neuron.m_outputWeights[m_myIndex].weight += newDeltaStrength;
 
 	}
 }
