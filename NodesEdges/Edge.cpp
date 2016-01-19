@@ -6,11 +6,3 @@ Edge::~Edge(){
 	//m_srcNode.eraseOutgoingEdge(this);
 }
 
-
-//Synapsis::Synapsis ()
-//{
-//}
-//
-//Synapsis::~Synapsis()
-//	  {
-//	  }
