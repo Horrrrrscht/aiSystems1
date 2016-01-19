@@ -25,14 +25,6 @@ private:
 
 };
 
-class Synapsis : public Edge
-{
-public:
-	Synapsis();
-	~Synapsis();
 
-private:
-	double m_strength;
-};
 
 #endif
