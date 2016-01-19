@@ -73,16 +73,16 @@ public:
 	~Neuron();
 
 private:
-	static double eta;
+	static double learningRate;
 	static double alpha;
 	static double transferFunction(double x);
 	static double transferFunctionDerivative(double x);
 	static double randomWeight(void) { return rand() / double(RAND_MAX); }
 	double sumDOW(const Layer &nextLayer) const ;
-	double m_outputVal;
-	//vector<Connection> m_outputWeights;
-	unsigned m_myIndex;
-	double m_gradient;
+	double m_ausgabeWert;
+	//vector<Connection> m_verbindungsStaerken;
+	unsigned m_id;
+	double m_steigung;
 };
 
 
