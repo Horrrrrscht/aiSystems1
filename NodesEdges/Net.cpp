@@ -3,19 +3,19 @@
 
 using namespace std;
 
-Net::Net(const vector<unsigned> &topology)
+Net::Net(const vector<unsigned> &layout)
 {
 
-	unsigned numLayers = topology.size();
-	for (unsigned layerNum = 0; layerNum < numLayers; ++layerNum) {
+	unsigned numLayers = layout.size();
+	for (unsigned layerLoop = 0; layerLoop < numLayers; ++layerLoop) {
 		
 		m_layers.push_back(Layer());
-		unsigned numOutputs = layerNum == topology.size() - 1 ? 0 : topology[layerNum + 1];
+		unsigned numOutputs = layerLoop == layout.size() - 1 ? 0 : layout[layerLoop + 1];
 		
 
-		for (unsigned neuronNum = 0; neuronNum <= topology[layerNum]; ++neuronNum) {
+		for (unsigned neuronLoop = 0; neuronLoop <= layout[layerLoop]; ++neuronLoop) {
 
-			m_layers.back().push_back(Neuron(numOutputs, neuronNum));
+			m_layers.back().push_back(Neuron(numOutputs, neuronLoop));
 			cout << "Made a Neuron!" << endl;
 		}
 
@@ -26,23 +26,23 @@ Net::Net(const vector<unsigned> &topology)
 
 }
 
-void Net::feedForward(const vector<double> &inputVals) {
+void Net::feedForward(const vector<double> &eingabeWerte) {
 
-	assert(inputVals.size() == m_layers[0].size() - 1);
+	assert(eingabeWerte.size() == m_layers[0].size() - 1);
 
-	for (unsigned i = 0; i < inputVals.size(); ++i) {
+	for (unsigned i = 0; i < eingabeWerte.size(); ++i) {
 
-		m_layers[0][i].setOutputVal(inputVals[i]);
+		m_layers[0][i].setOutputVal(eingabeWerte[i]);
 	}
 
 
 
-	for (unsigned layerNum = 1; layerNum < m_layers.size(); ++layerNum) {
+	for (unsigned layerLoop = 1; layerLoop < m_layers.size(); ++layerLoop) {
 
-		Layer &prevLayer = m_layers[layerNum - 1];
+		Layer &prevLayer = m_layers[layerLoop - 1];
 
-		for (unsigned n = 0; n < m_layers[layerNum].size() - 1; ++n) {
-			m_layers[layerNum][n].feedForward(prevLayer);
+		for (unsigned n = 0; n < m_layers[layerLoop].size() - 1; ++n) {
+			m_layers[layerLoop][n].feedForward(prevLayer);
 		}
 	}
 
@@ -54,37 +54,37 @@ void Net::printNet() {
 
 	cout << "Net Info: " << endl;
 
-	for (unsigned layerNum = 0; layerNum < m_layers.size(); ++layerNum) {
+	for (unsigned LayerLoop = 0; layerLoop < m_layers.size(); ++layerLoop) {
 
-		cout << "Layer " << layerNum << endl;
+		cout << "Layer " << layerLoop << endl;
 
-		for (unsigned n = 0; n < m_layers[layerNum].size(); ++n) {
+		for (unsigned n = 0; n < m_layers[layerLoop].size(); ++n) {
 
 			cout << "Neuron " << n << endl;
 
-			for (unsigned k = 0; k < m_layers[layerNum][n].m_outputWeights.size(); ++k) {
+			for (unsigned k = 0; k < m_layers[layerLoop][n].m_outputWeights.size(); ++k) {
 
-				cout << "Weight " << k << " : " << m_layers[layerNum][n].m_outputWeights[k].weight << endl;
+				cout << "Weight " << k << " : " << m_layers[layerLoop][n].m_outputWeights[k].weight << endl;
 			}
 		}
 	}
 }
 
-void Net::backProp(const vector<double> &targetVals) {
+void Net::backProp(const vector<double> &zielWerte) {
 
 	Layer &outputLayer = m_layers.back();
-	m_error = 0.0;
+	m_fehler = 0.0;
 
 	for (unsigned n = 0; n < outputLayer.size() - 1 ; ++n) {
 
-		double delta = targetVals[n] - outputLayer[n].getOutputVal();
-		m_error += delta * delta;
+		double delta = zielWerte[n] - outputLayer[n].getOutputVal();
+		m_fehler += delta * delta;
 	}
 
-	m_error /= outputLayer.size() - 1;
-	m_error = sqrt(m_error);
+	m_fehler /= outputLayer.size() - 1;
+	m_fehler = sqrt(m_fehler);
 
-	m_recentAverageError = (m_recentAverageError * m_recentAverageSmoothingFactor + m_error) /
+	m_recentAverageError = (m_recentAverageError * m_recentAverageSmoothingFactor + m_fehler) /
 		(m_recentAverageSmoothingFactor + 1.0);
 
 	for (unsigned n = 0; n < outputLayer.size() - 1; ++n) {
@@ -92,10 +92,10 @@ void Net::backProp(const vector<double> &targetVals) {
 		outputLayer[n].calcOutputGradients(targetVals[n]);
 	}
 
-	for (unsigned layerNum = m_layers.size() - 2 ; layerNum > 0; --layerNum) {
+	for (unsigned layerLoop = m_layers.size() - 2 ; layerLoop > 0; --layerLoop) {
 
-		Layer &hiddenLayer = m_layers[layerNum];
-		Layer &nextLayer = m_layers[layerNum + 1];
+		Layer &hiddenLayer = m_layers[layerLoop];
+		Layer &nextLayer = m_layers[layerLoop + 1];
 
 		for (unsigned n = 0; n < hiddenLayer.size(); ++n) {
 
@@ -103,10 +103,10 @@ void Net::backProp(const vector<double> &targetVals) {
 		}
 	}
 
-	for (unsigned layerNum = m_layers.size() - 1; layerNum > 0; --layerNum) {
+	for (unsigned layerLoop = m_layers.size() - 1; layerLoop > 0; --layerLoop) {
 
-		Layer &layer = m_layers[layerNum];
-		Layer &prevLayer = m_layers[layerNum - 1];
+		Layer &layer = m_layers[layerLoop];
+		Layer &prevLayer = m_layers[layerLoop - 1];
 
 		for (unsigned n = 0; n < layer.size() - 1; ++n) {
 
