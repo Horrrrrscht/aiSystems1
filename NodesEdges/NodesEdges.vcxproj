@@ -80,6 +80,7 @@
     <ClInclude Include="Edge.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +88,7 @@
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Net.cpp" />
     <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="Node.cpp" />

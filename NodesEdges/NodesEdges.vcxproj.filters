@@ -30,6 +30,9 @@
     <ClInclude Include="FileReader.h">
       <Filter>Graph</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +54,9 @@
       <Filter>Graph</Filter>
     </ClCompile>
     <ClCompile Include="FileReader.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
       <Filter>Graph</Filter>
     </ClCompile>
   </ItemGroup>
