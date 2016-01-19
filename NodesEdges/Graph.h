@@ -45,10 +45,10 @@ private:
 class Net : public Graph
 {
 public:
-	Net(const vector<unsigned> &topology);
-	void feedForward(const vector<double> &inputVals);
-	void backProp(const vector<double> &targetVals);	
-	void getResults(vector<double> &resultVals) ;
+	Net(const vector<unsigned> &layout);
+	void feedForward(const vector<double> &eingabeWerte);
+	void backProp(const vector<double> &zielWerte);	
+	void getResults(vector<double> &ergebnis) ;
 	void printNet();
 
 	~Net();
