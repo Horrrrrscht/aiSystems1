@@ -22,9 +22,22 @@ vector<vector<double>> FileReader::readData(string fileName) {
 
 			getline(myFile, aLine);
 
-			int comma_pos = aLine.find(',', 0);
+			int comma_pos;
 
-			string xst, yst, ost, substring;
+			vector <double> temp;
+				
+			while ((comma_pos = aLine.find(',', 0)) > 0) {
+			
+				//cout << aLine << comma_pos << endl;
+
+				temp.push_back(atof(aLine.substr(0, comma_pos).c_str()));
+				aLine = aLine.substr(comma_pos + 1, aLine.length() - 1);
+
+			 } 
+			
+			 temp.push_back(atof(aLine.c_str()));
+
+		/*	string xst, yst, ost, substring;
 
 			xst = aLine.substr(0, comma_pos);
 			substring = aLine.substr(comma_pos + 1, aLine.length() - 1);
@@ -49,7 +62,7 @@ vector<vector<double>> FileReader::readData(string fileName) {
 
 			temp.push_back(xt);
 			temp.push_back(yt);
-			temp.push_back(ot);
+			temp.push_back(ot);*/
 
 			data.push_back(temp);
 
