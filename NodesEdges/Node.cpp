@@ -2,7 +2,7 @@
 
 #include <sstream>
 #include <iomanip>
-#include <cctype> // für isalnum() (siehe http://www.cplusplus.com/reference/cctype/isalnum/?kw=isalnum)
+#include <cctype> // fÃ¼r isalnum() (siehe http://www.cplusplus.com/reference/cctype/isalnum/?kw=isalnum)
 
 int Node::s_numInstances = 0;
 
@@ -53,48 +53,4 @@ void Node::eraseIncomingEdge(Edge* rEdge)
 
 Node::~Node(){
 
-	//for (std::list<Edge*>::iterator it = m_outgoingEdges.begin(); it != m_outgoingEdges.end();){
-
-	//	delete (*it);
-	//}
-
-	//for (std::list<Edge*>::iterator it = m_incomingEdges.begin(); it != m_incomingEdges.end();){
-
-	//	delete (*it);
-	//}
-
 }
-
-
-//InNode::InNode()
-//{
-//}
-//
-//InNode::~InNode()
-//{
-//}
-//
-//HiddenNode::HiddenNode()
-//{
-//}
-//
-//HiddenNode::~HiddenNode()
-//{
-//}
-//
-//OutNode::OutNode()
-//{
-//}
-//
-//OutNode::~OutNode()
-//{
-//}
-//
-//
-//NeuralNode::NeuralNode()
-//{
-//}
-//
-//NeuralNode::~NeuralNode()
-//{
-//}
