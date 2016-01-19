@@ -79,7 +79,7 @@ private:
 	static double transferFunctionDerivative(double x);
 	static double randomWeight(void) { return rand() / double(RAND_MAX); }
 	double sumDOW(const Layer &nextLayer) const ;
-	double m_ausgabeWert;
+	double m_ergebnis;
 	//vector<Connection> m_verbindungsStaerken;
 	unsigned m_id;
 	double m_steigung;

@@ -54,7 +54,7 @@ void Net::printNet() {
 
 	cout << "Net Info: " << endl;
 
-	for (unsigned LayerLoop = 0; layerLoop < m_layers.size(); ++layerLoop) {
+	for (unsigned layerLoop = 0; layerLoop < m_layers.size(); ++layerLoop) {
 
 		cout << "Layer " << layerLoop << endl;
 
@@ -62,9 +62,9 @@ void Net::printNet() {
 
 			cout << "Neuron " << n << endl;
 
-			for (unsigned k = 0; k < m_layers[layerLoop][n].m_outputWeights.size(); ++k) {
+			for (unsigned k = 0; k < m_layers[layerLoop][n].m_outputStrengths.size(); ++k) {
 
-				cout << "Weight " << k << " : " << m_layers[layerLoop][n].m_outputWeights[k].weight << endl;
+				cout << "Weight " << k << " : " << m_layers[layerLoop][n].m_outputStrengths[k].strength << endl;
 			}
 		}
 	}
@@ -89,7 +89,7 @@ void Net::backProp(const vector<double> &zielWerte) {
 
 	for (unsigned n = 0; n < outputLayer.size() - 1; ++n) {
 
-		outputLayer[n].calcOutputGradients(targetVals[n]);
+		outputLayer[n].calcOutputGradients(zielWerte[n]);
 	}
 
 	for (unsigned layerLoop = m_layers.size() - 2 ; layerLoop > 0; --layerLoop) {
