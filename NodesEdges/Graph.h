@@ -55,9 +55,9 @@ public:
 
 private:
 	vector<Layer> m_layers;
-	double m_error;
-	double m_recentAverageError;
-	double m_recentAverageSmoothingFactor;
+	double m_fehler;
+	double m_durchschnittsFehler;
+	double m_durchschnittsFehlerAnpassungsWert;
 };
 
 
