@@ -84,8 +84,8 @@ void Net::backProp(const vector<double> &zielWerte) {
 	m_fehler /= outputLayer.size() - 1;
 	m_fehler = sqrt(m_fehler);
 
-	m_recentAverageError = (m_recentAverageError * m_recentAverageSmoothingFactor + m_fehler) /
-		(m_recentAverageSmoothingFactor + 1.0);
+	m_durchschnittsFehler = (m_durchschnittsFehler * m_durchschnittsFehlerAnpassungsWert + m_fehler) /
+		(m_durchschnittsFehlerAnpassungsWert + 1.0);
 
 	for (unsigned n = 0; n < outputLayer.size() - 1; ++n) {
 
@@ -116,13 +116,13 @@ void Net::backProp(const vector<double> &zielWerte) {
 
 	//printNet();
 };
-void Net::getResults(vector<double> &resultVals) {
+void Net::getResults(vector<double> &ergebnis) {
 
-	resultVals.clear();
+	ergebnis.clear();
 
 	for (unsigned n = 0; n < m_layers.back().size() - 1; ++n) {
 
-		resultVals.push_back(m_layers.back()[n].getOutputVal());
+		ergebnis.push_back(m_layers.back()[n].getOutputVal());
 	}
 
 };
