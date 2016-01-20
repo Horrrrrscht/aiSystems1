@@ -5,7 +5,7 @@
 using namespace std;
 
 double Neuron::learningRate = 0.05;
-double Neuron::alpha = 0.5;
+double Neuron::alpha = 0.05;
 
 
 

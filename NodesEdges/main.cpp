@@ -26,7 +26,7 @@ int main()
 	cout << "Vektor erstellt" << endl;
 
 	int stepcounter = 0;
-	for (unsigned j = 0; j < 100; ++j) {
+	for (unsigned j = 0; j < 10; ++j) {
 
 		for (unsigned n = 0; n < sampleData.size() - 1; ++n) {
 
