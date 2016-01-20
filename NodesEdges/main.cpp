@@ -1,12 +1,6 @@
-// 53:02 bbbgk
-
-
-
 #include <iostream>
-
-#include "Node.h"
-#include "Graph.h"
 #include "FileReader.h"
+#include "NeuralNet.h"
 
 int main()
 {
@@ -25,7 +19,7 @@ int main()
 	layout.push_back(4);
 	layout.push_back(10);
 	layout.push_back(1);
-	Net myNet(layout);
+	NeuralNet myNet(layout);
 
  	vector<vector<double>> sampleData = FileReader::readData("SampleData2.csv");
 

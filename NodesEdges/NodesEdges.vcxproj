@@ -77,23 +77,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Edge.h" />
     <ClInclude Include="FileReader.h" />
-    <ClInclude Include="Graph.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="NeuralNet.h" />
     <ClInclude Include="Neuron.h" />
-    <ClInclude Include="Node.h" />
     <ClInclude Include="Synapse.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FileReader.cpp" />
-    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Net.cpp" />
+    <ClCompile Include="NeuralNet.cpp" />
     <ClCompile Include="Neuron.cpp" />
-    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Synapse.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

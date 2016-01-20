@@ -1,10 +1,11 @@
-#include "Graph.h"
-#include "Neuron.h"
 
+#include "NeuralNet.h"
 
 using namespace std;
 
-Net::Net(const vector<unsigned> &layout)
+typedef vector<Neuron> Layer;
+
+NeuralNet::NeuralNet(const vector<unsigned> &layout)
 {
 
 	unsigned numLayers = layout.size();
@@ -27,7 +28,7 @@ Net::Net(const vector<unsigned> &layout)
 
 }
 
-void Net::feedForward(const vector<double> &eingabeWerte) {
+void NeuralNet::feedForward(const vector<double> &eingabeWerte) {
 
 	assert(eingabeWerte.size() == m_layers[0].size() - 1);
 
@@ -50,7 +51,7 @@ void Net::feedForward(const vector<double> &eingabeWerte) {
 	//printNet();
 }
 
-void Net::printNet() {
+void NeuralNet::printNet() {
 
 
 	cout << "Net Info: " << endl;
@@ -71,7 +72,7 @@ void Net::printNet() {
 	}
 }
 
-void Net::backProp(const vector<double> &zielWerte) {
+void NeuralNet::backProp(const vector<double> &zielWerte) {
 
 	Layer &outputLayer = m_layers.back();
 	m_fehler = 0.0;
@@ -111,13 +112,13 @@ void Net::backProp(const vector<double> &zielWerte) {
 
 		for (unsigned n = 0; n < layer.size() - 1; ++n) {
 
-			layer[n].updateInputWeights(prevLayer);
+			layer[n].updateInputStrengths(prevLayer);
 		}
 	}
 
 	//printNet();
 };
-void Net::getResults(vector<double> &ergebnis) {
+void NeuralNet::getResults(vector<double> &ergebnis) {
 
 	ergebnis.clear();
 
@@ -130,6 +131,6 @@ void Net::getResults(vector<double> &ergebnis) {
 
 
 
-Net::~Net()
+NeuralNet::~NeuralNet()
 {
 }

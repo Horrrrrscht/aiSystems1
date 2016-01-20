@@ -52,11 +52,11 @@ void Neuron::calcOutputGradients(double targetVal) {
 
 void Neuron::calcHiddenGradients(Layer &nextLayer) {
 
-	double dow = sumDOW(nextLayer);
+	double dow = steigungsSumme(nextLayer);
 	m_steigung = dow * Neuron::transferFunctionDerivative(m_ergebnis);
 }
 
-double Neuron::sumDOW(Layer &nextLayer)  {
+double Neuron::steigungsSumme(Layer &nextLayer)  {
 
 	double sum = 0.0;
 
@@ -68,7 +68,7 @@ double Neuron::sumDOW(Layer &nextLayer)  {
 	return sum;
 }
 
-void Neuron::updateInputWeights(Layer &prevLayer) {
+void Neuron::updateInputStrengths(Layer &prevLayer) {
 
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
@@ -87,9 +87,4 @@ void Neuron::updateInputWeights(Layer &prevLayer) {
 	}
 }
 
-
-
-
-Neuron::~Neuron()
-{
-}
+Neuron::~Neuron() {};
