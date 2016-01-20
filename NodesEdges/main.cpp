@@ -28,13 +28,15 @@ int main()
 	Net myNet(layout);
 
  	vector<vector<double>> sampleData = FileReader::readData("SampleData2.csv");
-	
+
+	cout << "Vektor erstellt" << endl;
+
 	int stepcounter = 0;
 	for (unsigned j = 0; j < 100; ++j) {
 
 		for (unsigned n = 0; n < sampleData.size() - 1; ++n) {
 
-
+			// cout << stepcounter << endl;
 			//for (unsigned n = 0; n < 5; ++n) {
 
 			vector<double> inputWerte;
@@ -46,7 +48,7 @@ int main()
 			zielWerte.push_back(sampleData[n][4]);
 			++stepcounter;
 			//cout << "------------------------------------------------------" << endl;
-			// cout << "Step " << stepcounter << endl;
+			//cout << "Step " << stepcounter << endl;
 			
 			myNet.feedForward(inputWerte);
 

@@ -10,7 +10,7 @@ menu::menu()
 }
 
 
-vector<double> menu::getinputdata() { return m_inputdata; };
+vector<double> menu::getinputdata() { return m_inputdata; } ;
 
 
 menu::~menu()

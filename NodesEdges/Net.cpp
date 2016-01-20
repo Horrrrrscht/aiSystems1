@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include "Neuron.h"
 
 
 using namespace std;
@@ -64,7 +65,7 @@ void Net::printNet() {
 
 			for (unsigned k = 0; k < m_layers[layerLoop][n].m_outputStrengths.size(); ++k) {
 
-				cout << "Weight " << k << " : " << m_layers[layerLoop][n].m_outputStrengths[k].strength << endl;
+				cout << "Weight " << k << " : " << m_layers[layerLoop][n].m_outputStrengths[k].getStrength() << endl;
 			}
 		}
 	}

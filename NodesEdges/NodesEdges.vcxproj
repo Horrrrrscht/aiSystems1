@@ -81,7 +81,9 @@
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Neuron.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Synapse.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Edge.cpp" />
@@ -92,6 +94,7 @@
     <ClCompile Include="Net.cpp" />
     <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Synapse.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

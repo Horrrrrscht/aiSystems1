@@ -14,7 +14,7 @@ vector<vector<double>> FileReader::readData(string fileName) {
 
 	if (myFile.is_open()) {
 
-		cout << "Datei erfolgreich eingelesen!\n";
+		
 
 		while (!myFile.eof()) {
 
@@ -30,8 +30,12 @@ vector<vector<double>> FileReader::readData(string fileName) {
 			
 				//cout << aLine << comma_pos << endl;
 
+
+
 				temp.push_back(atof(aLine.substr(0, kommaPosition).c_str()));
 				aLine = aLine.substr(kommaPosition + 1, aLine.length() - 1);
+
+				
 
 			 } 
 			
@@ -39,9 +43,10 @@ vector<vector<double>> FileReader::readData(string fileName) {
 			 
 			 daten.push_back(temp);
 
+			 //cout << "--" << endl;
 
 		}
-
+		cout << "Datei erfolgreich eingelesen!\n";
 	}
 	else {
 

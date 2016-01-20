@@ -10,6 +10,8 @@ class Edge
 {
 public:
 
+	Edge();
+	
 	Edge(Node& rSrc, Node& rDst) : m_srcNode(rSrc), m_dstNode(rDst)  { rSrc.addOutgoingEdges(this); }
 
 	std::string toString() { return m_srcNode.getID() + " -> " + m_dstNode.getID(); }

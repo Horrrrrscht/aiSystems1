@@ -9,25 +9,12 @@ class menu
 {
 public:
 	menu();
-	vector<double> getinputdata() {};
+	vector<double> getinputdata() ;
 	~menu();
 
 private:
 
-	vector<double> m_inputdata
+	vector<double> m_inputdata;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif // !MENU_H

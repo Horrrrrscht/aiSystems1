@@ -1,4 +1,5 @@
-#include "Node.h"
+#include "Neuron.h"
+#include "Synapse.h"
 #include <iostream>
 
 using namespace std;
@@ -12,22 +13,22 @@ double Neuron::alpha = 0.5;
 Neuron::Neuron(unsigned numOutputs, unsigned myId)
 {
 	for (unsigned c = 0; c < numOutputs; ++c) {
-		m_outputStrengths.push_back(Connection());
-		m_outputStrengths.back().strength = randomWeight();
-		cout << m_outputStrengths.back().strength << endl;
+		m_outputStrengths.push_back(Synapse());
+		m_outputStrengths.back().setStrength( randomWeight() );
+		cout << m_outputStrengths.back().getStrength() << endl;
 	}
 
 	m_id = myId;
 }
 
-void Neuron::feedForward(const Layer &prevLayer) {
+void Neuron::feedForward(Layer &prevLayer) {
 
 	double sum = 0.0;
 
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
-		sum +=	prevLayer[n].getOutputVal() *
-				prevLayer[n].m_outputStrengths[m_id].strength;
+		sum += prevLayer[n].getOutputVal() *
+			prevLayer[n].m_outputStrengths[m_id].getStrength();
 	}
 
 	m_ergebnis = Neuron::transferFunction(sum);
@@ -49,19 +50,19 @@ void Neuron::calcOutputGradients(double targetVal) {
 	m_steigung = delta * Neuron::transferFunctionDerivative(m_ergebnis);
 }
 
-void Neuron::calcHiddenGradients(const Layer &nextLayer) {
+void Neuron::calcHiddenGradients(Layer &nextLayer) {
 
 	double dow = sumDOW(nextLayer);
 	m_steigung = dow * Neuron::transferFunctionDerivative(m_ergebnis);
 }
 
-double Neuron::sumDOW(const Layer &nextLayer) const {
+double Neuron::sumDOW(Layer &nextLayer)  {
 
 	double sum = 0.0;
 
 	for (unsigned n = 0; n < nextLayer.size() - 1; ++n) {
 
-		sum += m_outputStrengths[n].strength * nextLayer[n].m_steigung;
+		sum += m_outputStrengths[n].getStrength() * nextLayer[n].m_steigung;
 	}
 
 	return sum;
@@ -72,7 +73,7 @@ void Neuron::updateInputWeights(Layer &prevLayer) {
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
 		Neuron &neuron = prevLayer[n];
-		double oldDeltaStrength = neuron.m_outputStrengths[m_id].deltaStrength;
+		double oldDeltaStrength = neuron.m_outputStrengths[m_id].getDeltaStrength();
 		
 		double newDeltaStrength = learningRate
 			* neuron.getOutputVal()
@@ -80,8 +81,8 @@ void Neuron::updateInputWeights(Layer &prevLayer) {
 			+ alpha
 			* oldDeltaStrength;
 
-		neuron.m_outputStrengths[m_id].deltaStrength = newDeltaStrength;
-		neuron.m_outputStrengths[m_id].strength += newDeltaStrength;
+		neuron.m_outputStrengths[m_id].setDeltaStrength ( newDeltaStrength );
+		neuron.m_outputStrengths[m_id].getStrength() += newDeltaStrength;
 
 	}
 }

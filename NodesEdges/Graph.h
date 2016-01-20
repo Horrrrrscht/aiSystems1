@@ -27,13 +27,13 @@ public:
 	
 	void addEdge(Edge* pEdge);
 	
-	// void deleteNode(Node* pNode);
+	void deleteNode(Node* pNode);
 
 	std::string toString();
 
 	virtual ~Graph();
 
-	void deleteNode(Node* pNode);
+//	void deleteNode(Node* pNode);
 
 private:
 
