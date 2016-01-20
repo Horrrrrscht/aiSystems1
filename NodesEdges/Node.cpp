@@ -2,7 +2,7 @@
 
 #include <sstream>
 #include <iomanip>
-#include <cctype> // für isalnum() (siehe http://www.cplusplus.com/reference/cctype/isalnum/?kw=isalnum)
+#include <cctype> // fÃ¼r isalnum() (siehe http://www.cplusplus.com/reference/cctype/isalnum/?kw=isalnum)
 
 int Node::s_numInstances = 0;
 
@@ -20,81 +20,37 @@ Node::Node(std::string id) : m_id(id)
 	s_numInstances += 1;
 }
 
-void Node::eraseOutgoingEdge(Edge* rEdge) 
-{
-	for (std::list<Edge*>::iterator it = m_outgoingEdges.begin(); it != m_outgoingEdges.end();)
-	{
-		if ((*it) == rEdge)
-		{
-			it = m_outgoingEdges.erase(it);
-		}
-		else
-		{
-			it++;
-		}
-	}
-}
+// void Node::eraseOutgoingEdge(Edge* rEdge) 
+// {
+// 	for (std::list<Edge*>::iterator it = m_outgoingEdges.begin(); it != m_outgoingEdges.end();)
+// 	{
+// 		if ((*it) == rEdge)
+// 		{
+// 			it = m_outgoingEdges.erase(it);
+// 		}
+// 		else
+// 		{
+// 			it++;
+// 		}
+// 	}
+// }
 
-void Node::eraseIncomingEdge(Edge* rEdge)
-{
-	for (std::list<Edge*>::iterator it = m_incomingEdges.begin(); it != m_incomingEdges.end();)
-	{
-		if ((*it) == rEdge)
-		{
-			it = m_incomingEdges.erase(it);
-		}
-		else
-		{
-			it++;
-		}
-	}
-}
+// void Node::eraseIncomingEdge(Edge* rEdge)
+// {
+// 	for (std::list<Edge*>::iterator it = m_incomingEdges.begin(); it != m_incomingEdges.end();)
+// 	{
+// 		if ((*it) == rEdge)
+// 		{
+// 			it = m_incomingEdges.erase(it);
+// 		}
+// 		else
+// 		{
+// 			it++;
+// 		}
+// 	}
+// }
 
 
 Node::~Node(){
 
-	//for (std::list<Edge*>::iterator it = m_outgoingEdges.begin(); it != m_outgoingEdges.end();){
-
-	//	delete (*it);
-	//}
-
-	//for (std::list<Edge*>::iterator it = m_incomingEdges.begin(); it != m_incomingEdges.end();){
-
-	//	delete (*it);
-	//}
-
 }
-
-
-//InNode::InNode()
-//{
-//}
-//
-//InNode::~InNode()
-//{
-//}
-//
-//HiddenNode::HiddenNode()
-//{
-//}
-//
-//HiddenNode::~HiddenNode()
-//{
-//}
-//
-//OutNode::OutNode()
-//{
-//}
-//
-//OutNode::~OutNode()
-//{
-//}
-//
-//
-//NeuralNode::NeuralNode()
-//{
-//}
-//
-//NeuralNode::~NeuralNode()
-//{
-//}

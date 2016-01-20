@@ -13,45 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Graph">
-      <UniqueIdentifier>{e39b0530-a9be-4e51-9c6b-b895a9709cce}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Edge.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph.h">
-      <Filter>Graph</Filter>
+    <ClInclude Include="Menu.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="FileReader.h">
-      <Filter>Graph</Filter>
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Synapse.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Neuron.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNet.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="Graph.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="Edge.cpp">
+    <ClCompile Include="FileReader.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Net.cpp">
-      <Filter>Graph</Filter>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Neuron.cpp">
-      <Filter>Graph</Filter>
+      <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="FileReader.cpp">
-      <Filter>Graph</Filter>
+    <ClCompile Include="Synapse.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuralNet.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,36 +1,37 @@
-#include "Node.h"
+#include "Neuron.h"
+#include "Synapse.h"
 #include <iostream>
 
 using namespace std;
 
-double Neuron::eta = 0.05;
+double Neuron::learningRate = 0.05;
 double Neuron::alpha = 0.5;
 
 
 
 
-Neuron::Neuron(unsigned numOutputs, unsigned myIndex)
+Neuron::Neuron(unsigned numOutputs, unsigned myId)
 {
 	for (unsigned c = 0; c < numOutputs; ++c) {
-		m_outputWeights.push_back(Connection());
-		m_outputWeights.back().weight = randomWeight();
-		cout << m_outputWeights.back().weight << endl;
+		m_outputStrengths.push_back(Synapse());
+		m_outputStrengths.back().setStrength( randomWeight() );
+		cout << m_outputStrengths.back().getStrength() << endl;
 	}
 
-	m_myIndex = myIndex;
+	m_id = myId;
 }
 
-void Neuron::feedForward(const Layer &prevLayer) {
+void Neuron::feedForward(Layer &prevLayer) {
 
 	double sum = 0.0;
 
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
-		sum +=	prevLayer[n].getOutputVal() *
-				prevLayer[n].m_outputWeights[m_myIndex].weight;
+		sum += prevLayer[n].getOutputVal() *
+			prevLayer[n].m_outputStrengths[m_id].getStrength();
 	}
 
-	m_outputVal = Neuron::transferFunction(sum);
+	m_ergebnis = Neuron::transferFunction(sum);
 }
 
 double Neuron::transferFunction(double x) {
@@ -45,50 +46,45 @@ double Neuron::transferFunctionDerivative(double x) {
 
 void Neuron::calcOutputGradients(double targetVal) {
 
-	double delta = targetVal - m_outputVal;
-	m_gradient = delta * Neuron::transferFunctionDerivative(m_outputVal);
+	double delta = targetVal - m_ergebnis;
+	m_steigung = delta * Neuron::transferFunctionDerivative(m_ergebnis);
 }
 
-void Neuron::calcHiddenGradients(const Layer &nextLayer) {
+void Neuron::calcHiddenGradients(Layer &nextLayer) {
 
-	double dow = sumDOW(nextLayer);
-	m_gradient = dow * Neuron::transferFunctionDerivative(m_outputVal);
+	double dow = steigungsSumme(nextLayer);
+	m_steigung = dow * Neuron::transferFunctionDerivative(m_ergebnis);
 }
 
-double Neuron::sumDOW(const Layer &nextLayer) const {
+double Neuron::steigungsSumme(Layer &nextLayer)  {
 
 	double sum = 0.0;
 
 	for (unsigned n = 0; n < nextLayer.size() - 1; ++n) {
 
-		sum += m_outputWeights[n].weight * nextLayer[n].m_gradient;
+		sum += m_outputStrengths[n].getStrength() * nextLayer[n].m_steigung;
 	}
 
 	return sum;
 }
 
-void Neuron::updateInputWeights(Layer &prevLayer) {
+void Neuron::updateInputStrengths(Layer &prevLayer) {
 
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
 		Neuron &neuron = prevLayer[n];
-		double oldDeltaWeight = neuron.m_outputWeights[m_myIndex].deltaWeight;
+		double oldDeltaStrength = neuron.m_outputStrengths[m_id].getDeltaStrength();
 		
-		double newDeltaWeight = eta
+		double newDeltaStrength = learningRate
 			* neuron.getOutputVal()
-			* m_gradient
+			* m_steigung
 			+ alpha
-			* oldDeltaWeight;
+			* oldDeltaStrength;
 
-		neuron.m_outputWeights[m_myIndex].deltaWeight = newDeltaWeight;
-		neuron.m_outputWeights[m_myIndex].weight += newDeltaWeight;
+		neuron.m_outputStrengths[m_id].setDeltaStrength ( newDeltaStrength );
+		neuron.m_outputStrengths[m_id].getStrength() += newDeltaStrength;
 
 	}
 }
 
-
-
-
-Neuron::~Neuron()
-{
-}
+Neuron::~Neuron() {};

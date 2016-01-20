@@ -1,75 +1,57 @@
-// 53:02 bbbgk
-
-
-
 #include <iostream>
-
-#include "Node.h"
-#include "Graph.h"
 #include "FileReader.h"
+#include "NeuralNet.h"
 
 int main()
 {
 
-	Node* node_berlin = new Node("Berlin");
-	Node* node_frankfurt = new Node("Frankfurt");
-	Node* node_hamburg = new Node("Hamburg");
-
-	Graph g;
-	g.addNode(node_berlin);
-	g.addNode(node_frankfurt);
-	g.addNode(node_hamburg);
-
-	g.addEdge(new Edge(*node_berlin, *node_frankfurt));
-	g.addEdge(new Edge(*node_frankfurt, *node_hamburg));
-	g.addEdge(new Edge(*node_berlin, *node_hamburg));
-
-	std::cout << g.toString() << std::endl;
 
 	///////////////////////////////////////////////////////////////////
 
 	ofstream myfile;
 	myfile.open("example.txt");
-	myfile << "Writing this to a file.\n";
+	myfile << "Daten werden eingelesen\n";
 	
 
 	///////////////////////////////////////////////////////////////////
 	
-	vector<unsigned> topology;
-	topology.push_back(4);
-	topology.push_back(10);
-	topology.push_back(1);
-	Net myNet(topology);
+	vector<unsigned> layout;
+	layout.push_back(4);
+	layout.push_back(10);
+	layout.push_back(1);
+	NeuralNet myNet(layout);
 
  	vector<vector<double>> sampleData = FileReader::readData("SampleData2.csv");
-	
+
+	cout << "Vektor erstellt" << endl;
+
 	int stepcounter = 0;
 	for (unsigned j = 0; j < 100; ++j) {
 
 		for (unsigned n = 0; n < sampleData.size() - 1; ++n) {
 
-
+			// cout << stepcounter << endl;
 			//for (unsigned n = 0; n < 5; ++n) {
 
-			vector<double> inputVals;
-			inputVals.push_back(sampleData[n][0]);
-			inputVals.push_back(sampleData[n][1]);
-			inputVals.push_back(sampleData[n][2]);
-			inputVals.push_back(sampleData[n][3]);
-			vector<double> targetVals;
-			targetVals.push_back(sampleData[n][4]);
+			vector<double> inputWerte;
+			inputWerte.push_back(sampleData[n][0]);
+			inputWerte.push_back(sampleData[n][1]);
+			inputWerte.push_back(sampleData[n][2]);
+			inputWerte.push_back(sampleData[n][3]);
+			vector<double> zielWerte;
+			zielWerte.push_back(sampleData[n][4]);
 			++stepcounter;
 			//cout << "------------------------------------------------------" << endl;
-			// cout << "Step " << stepcounter << endl;
+			//cout << "Step " << stepcounter << endl;
 			
-			myNet.feedForward(inputVals);
+			myNet.feedForward(inputWerte);
 
-			myNet.backProp(targetVals);
+			myNet.backProp(zielWerte);
 
-			vector<double> resultVals;
-			myNet.getResults(resultVals);
+			vector<double> ergebnis;
+			myNet.getResults(ergebnis);
 
-			myfile << "Step " << stepcounter << "Input Values : " << sampleData[n][0] << " " << sampleData[n][1] << " " << sampleData[n][2] << " " << sampleData[n][3] << "Target Value : " << sampleData[n][4] << " " << "Output Value : " << resultVals[0] << endl;
+			myfile << "Step " << stepcounter << "Input : " << sampleData[n][0] << " " << sampleData[n][1] << " " << sampleData[n][2] << " " << sampleData[n][3] << "Ziel : " << sampleData[n][4] << " " << "Ergebnis : " << ergebnis[0] << endl;
 			
 			
 				
@@ -107,8 +89,8 @@ int main()
 
 
 	myfile.close();
-	vector<double> resultVals;
-	myNet.getResults(resultVals);
+	// vector<double> resultVals;
+	// myNet.getResults(resultVals);
 
 	 
 

@@ -1,16 +1,10 @@
-#include "Edge.h"
-
-Edge::~Edge(){
-
-	//m_dstNode.eraseIncomingEdge(this);
-	//m_srcNode.eraseOutgoingEdge(this);
-}
-
-
-//Synapsis::Synapsis ()
-//{
-//}
+//#include "Edge.h"
 //
-//Synapsis::~Synapsis()
-//	  {
-//	  }
+////Edge::Edge() {}
+//
+//Edge::~Edge(){
+//
+//	//m_dstNode.eraseIncomingEdge(this);
+//	//m_srcNode.eraseOutgoingEdge(this);
+//}
+
