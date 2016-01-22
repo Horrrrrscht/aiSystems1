@@ -13,8 +13,7 @@
 
 using namespace std;
 
-class Neuron ;
-typedef vector<Neuron> Layer;
+
 
 
 
@@ -42,23 +41,6 @@ private:
 
 };
 
-class Net : public Graph
-{
-public:
-	Net(const vector<unsigned> &layout);
-	void feedForward(const vector<double> &eingabeWerte);
-	void backProp(const vector<double> &zielWerte);	
-	void getResults(vector<double> &ergebnis) ;
-	void printNet();
-
-	~Net();
-
-private:
-	vector<Layer> m_layers;
-	double m_fehler;
-	double m_durchschnittsFehler;
-	double m_durchschnittsFehlerAnpassungsWert;
-};
 
 
 

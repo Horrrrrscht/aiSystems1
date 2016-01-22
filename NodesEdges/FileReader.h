@@ -12,7 +12,7 @@ class FileReader
 {
 public:
 	FileReader();
-	
+
 	static vector<vector<double>> readData(string fileName);
 
 	~FileReader();
