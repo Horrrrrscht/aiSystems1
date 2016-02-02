@@ -23,7 +23,7 @@ int main()
 
 	vector<vector<double>> sampleData = FileReader::readData("SampleData2.csv");
 	cout << sampleData.size() << endl;
-	unsigned stepcounter = 0.0;
+	unsigned stepcounter = 0;
 	double fail=1.0 , step=0.0;
 	unsigned x , a ;
 	cout << "How many Steps would you like me to do?" << endl;
