@@ -34,7 +34,14 @@ int main()
 		/*	for (unsigned int n = 0; n < (menu.getLayout()[0]); ++n)
 			{
 				inputWerte.push_back(sampleData[x][n]);
-			}*/
+			}
+			
+			//for (unsigned int n=0; n<(menu.getLayout().back().size(); ++n)
+			//{
+				// zielWerte.pushback(sampledata[x][sampledata[x].size()-n-1];	
+				// fuer alle outpt neuronen ausser das mit der id, die hier in sampledata steht z.b.3 eine 0 und fuer besagtes neuron eine 1 einsetzen
+			// }
+			*/
 
 			inputWerte.push_back(sampleData[x][0]);
 			inputWerte.push_back(sampleData[x][1]);
