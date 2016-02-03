@@ -48,8 +48,11 @@ double Neuron::funktionsAbleitung(double x) {
 }
 
 void Neuron::calcOutputGradients(double zielWert) {
-
-	double delta = zielWert - m_ergebnis;
+	double delta;
+	if (-0, 2 > zielWert - m_ergebnis>0, 2) {
+		 delta = zielWert - m_ergebnis;
+	}
+	else  delta = 0;
 	m_steigung = delta * Neuron::funktionsAbleitung(m_ergebnis);
 }
 

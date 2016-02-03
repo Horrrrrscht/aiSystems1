@@ -4,6 +4,7 @@
 #include <vector>
 #include "NeuralNet.h"
 #include "FileReader.h"
+#include "Neuron.h"
 
 using namespace std;
 
@@ -26,10 +27,10 @@ public:
 	void setLearningVals();
 	vector<double>getOwnInput() { return m_ownInput; }
 	void setOwnInput();
-	int go() { return m_startLearning; }
+	int exit() { return m_exit; }
 	void startLearning();
+	void makeNeuralNet();
 
-	//bla
 
 
 	~Menu();
@@ -41,6 +42,7 @@ private:
 	vector<double> m_learningVals;
 	vector<double>m_ownInput;
 	int m_startLearning;
+	int m_exit=0;
 
 
 };

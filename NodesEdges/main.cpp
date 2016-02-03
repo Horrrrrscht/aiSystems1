@@ -11,7 +11,7 @@ int main()
 {
 	Menu menu;
 	//NeuralNet myNet(menu.getLayout(), menu.getLearningVals());
-	while (menu.go() != 1) { menu.ui(); }
+	while (menu.exit() != 1) { menu.ui(); }
 	
 //	ofstream myfile;
 //
