@@ -44,7 +44,6 @@ private:
 	int m_startLearning;
 	int m_exit=0;
 
-
 };
 
 

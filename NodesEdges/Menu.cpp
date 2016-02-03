@@ -152,6 +152,10 @@ void Menu::startLearning()
 
 
 			vector<double> inputWerte;
+			
+			
+			
+			
 			unsigned x = rand() % sampleData.size();
 
 			for (unsigned int n = 0; n < (m_layout[0]); ++n)
@@ -180,6 +184,7 @@ void Menu::startLearning()
 
 					fehlercounter++;
 				}
+				
 				if (stepcounter % 1000 == 0) {
 					system("cls");
 					cout << "Step: "<< stepcounter << endl;
