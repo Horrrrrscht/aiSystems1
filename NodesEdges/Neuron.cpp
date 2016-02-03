@@ -38,12 +38,13 @@ void Neuron::feedForward( Layer &prevLayer) {
 
 double Neuron::funktion(double x) {
 
-	return/* tanh(x*x*x*x*x*x*x*x*x)*/ tanh(x*x*x*x*x*x*x*x*x);
+	return (tanh(x)/2)+0.5 ;
 }
 
 double Neuron::funktionsAbleitung(double x) {
 
-	return /*1/(x*x)*/ /*((1/cos(x/10))*(1/cos(x / 10) ))/10*/  9 * (x*x*x*x*x*x*x*x)*((1 / cos(x*x*x*x*x*x*x*x*x))*(1 / cos(x*x*x*x*x*x*x*x*x)))   /*3 * (x*x)*(1 / (cos(x*x*x)*cos(x*x*x)))*/;
+	if (-1.5707963<x<1.5707963) return cos(x) ;
+	return 0;
 }
 
 void Neuron::calcOutputGradients(double zielWert) {

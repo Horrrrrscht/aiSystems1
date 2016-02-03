@@ -9,6 +9,10 @@
 
 using namespace std;
 
+NeuralNet::NeuralNet()
+{
+}
+
 NeuralNet::NeuralNet(const vector<unsigned> &layout , vector<double>learningVals)
 {
 

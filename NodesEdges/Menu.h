@@ -2,8 +2,15 @@
 #define MENU_H
 //bla
 #include <vector>
+#include "NeuralNet.h"
+#include "FileReader.h"
 
 using namespace std;
+
+
+class NeuralNet;
+
+
 
 class Menu
 {
@@ -20,7 +27,7 @@ public:
 	vector<double>getOwnInput() { return m_ownInput; }
 	void setOwnInput();
 	int go() { return m_startLearning; }
-
+	void startLearning();
 
 	//bla
 
@@ -28,6 +35,7 @@ public:
 	~Menu();
 
 private:
+	vector<NeuralNet> Nets;
 	vector<unsigned> m_layout;
 	unsigned m_reps;
 	vector<double> m_learningVals;
