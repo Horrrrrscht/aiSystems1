@@ -143,7 +143,7 @@ Menu::~Menu()
 void Menu::startLearning()
 {
 	if (m_startLearning == 1) {
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		myfile.open("example.txt");
 		vector<vector<double>> sampleData = FileReader::readData("SampleData2.csv");
 
