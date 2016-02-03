@@ -18,40 +18,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Edge.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
     <ClInclude Include="FileReader.h">
-      <Filter>Graph</Filter>
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNet.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Neuron.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Synapse.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="Graph.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="Edge.cpp">
+    <ClCompile Include="Neuron.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Net.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="Neuron.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
     <ClCompile Include="FileReader.cpp">
-      <Filter>Graph</Filter>
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuralNet.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Synapse.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

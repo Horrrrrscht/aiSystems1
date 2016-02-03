@@ -1,92 +1,97 @@
-#include "Node.h"
+#include "Neuron.h"
 #include <iostream>
+#include "Synapse.h"
 
 using namespace std;
 
-double Neuron::eta = 0.05;
-double Neuron::alpha = 0.5;
+
+//vector<double> Neuron::m_learningVals.push_back(learningVals[0]);
+//vector<double> Neuron::m_learningVals.push_back(learningVals[1]);
 
 
 
 
-Neuron::Neuron(unsigned numOutputs, unsigned myIndex)
+Neuron::Neuron(unsigned numOutputs, unsigned myId)
 {
 	for (unsigned c = 0; c < numOutputs; ++c) {
-		m_outputWeights.push_back(Connection());
-		m_outputWeights.back().weight = randomWeight();
-		cout << m_outputWeights.back().weight << endl;
+		m_outputStrengths.push_back(Synapse());
+		m_outputStrengths.back().setStrength(randomStrength());
+		m_outputStrengths.back().setDeltaStrength(m_outputStrengths.back().getStrength());
+		cout << m_outputStrengths.back().getStrength() << endl;
 	}
 
-	m_myIndex = myIndex;
+	m_id = myId;
 }
 
-void Neuron::feedForward(const Layer &prevLayer) {
+void Neuron::feedForward( Layer &prevLayer) {
 
-	double sum = 0.0;
+	double summe = 0.0;
 
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
-		sum +=	prevLayer[n].getOutputVal() *
-				prevLayer[n].m_outputWeights[m_myIndex].weight;
+		summe = (prevLayer[n].getOutputWert() *
+			prevLayer[n].m_outputStrengths[m_id].getStrength()) + summe;
 	}
 
-	m_outputVal = Neuron::transferFunction(sum);
+	m_ergebnis = Neuron::funktion(summe);
 }
 
-double Neuron::transferFunction(double x) {
+double Neuron::funktion(double x) {
 
-	return tanh(x/10);
+	return (tanh(x)/2)+0.5 ;
 }
 
-double Neuron::transferFunctionDerivative(double x) {
+double Neuron::funktionsAbleitung(double x) {
 
-	return 1.0 - x*x;
+	if (-1.5707963<x<1.5707963) return cos(x) ;
+	return 0;
 }
 
-void Neuron::calcOutputGradients(double targetVal) {
+void Neuron::calcOutputGradients(double zielWert) {
 
-	double delta = targetVal - m_outputVal;
-	m_gradient = delta * Neuron::transferFunctionDerivative(m_outputVal);
+	double delta = zielWert - m_ergebnis;
+	m_steigung = delta * Neuron::funktionsAbleitung(m_ergebnis);
 }
 
-void Neuron::calcHiddenGradients(const Layer &nextLayer) {
+void Neuron::calcHiddenGradients( Layer &nextLayer) {
 
-	double dow = sumDOW(nextLayer);
-	m_gradient = dow * Neuron::transferFunctionDerivative(m_outputVal);
+	double summe = steigungsSumme(nextLayer);
+	m_steigung = summe * Neuron::funktionsAbleitung(m_ergebnis);
 }
 
-double Neuron::sumDOW(const Layer &nextLayer) const {
+double Neuron::steigungsSumme( Layer &nextLayer)  {
 
-	double sum = 0.0;
+	double summe = 0.0;
 
 	for (unsigned n = 0; n < nextLayer.size() - 1; ++n) {
 
-		sum += m_outputWeights[n].weight * nextLayer[n].m_gradient;
+		summe = ( m_outputStrengths[n].getStrength() * nextLayer[n].m_steigung) + summe;
 	}
 
-	return sum;
+	return summe;
 }
 
-void Neuron::updateInputWeights(Layer &prevLayer) {
+void Neuron::updateInputStrengths(Layer &prevLayer) {
 
 	for (unsigned n = 0; n < prevLayer.size(); ++n) {
 
 		Neuron &neuron = prevLayer[n];
-		double oldDeltaWeight = neuron.m_outputWeights[m_myIndex].deltaWeight;
-		
-		double newDeltaWeight = eta
-			* neuron.getOutputVal()
-			* m_gradient
-			+ alpha
-			* oldDeltaWeight;
+		double oldDeltaStrength = neuron.m_outputStrengths[m_id].getDeltaStrength();
+		//cout << "steigung" << m_steigung << endl;
+		double newDeltaStrength = ((m_learningVals[0]) * neuron.getOutputWert()* m_steigung) +  ((m_learningVals[1]) *oldDeltaStrength);
 
-		neuron.m_outputWeights[m_myIndex].deltaWeight = newDeltaWeight;
-		neuron.m_outputWeights[m_myIndex].weight += newDeltaWeight;
+		//cout << "newDeltaStrength" << newDeltaStrength << endl;
+		neuron.m_outputStrengths[m_id].setDeltaStrength(newDeltaStrength);
+		neuron.m_outputStrengths[m_id].setStrength ( newDeltaStrength + neuron.m_outputStrengths[m_id].getStrength());
 
 	}
 }
 
-
+void Neuron::printStrengths() {
+	for (unsigned n = 0; n < m_outputStrengths.size(); n++) {
+		cout << m_outputStrengths[n].getStrength() << endl;
+	}
+}
 
 
 Neuron::~Neuron()
