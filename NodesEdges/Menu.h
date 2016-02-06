@@ -11,7 +11,7 @@ using namespace std;
 
 class NeuralNet;
 
-
+//das menu ist für die Organisation des neuralNets zuständig und ermöglicht dem Nutzer die Interaktion mit dem netz
 
 class Menu
 {
@@ -21,7 +21,8 @@ public:
 	void setLayout();
 	unsigned getReps() { return m_reps; }
 	void setReps();
-	void chart(const char* Funktion, int Eingabe);
+	void chart(const char* Funktion, double Eingabe);
+	void chart2(const char* Funktion, unsigned Eingabe, unsigned Eingabe2);
 	void ui();
 	vector<double> getLearningVals() { return m_learningVals; }
 	void setLearningVals();
@@ -30,6 +31,7 @@ public:
 	int exit() { return m_exit; }
 	void startLearning();
 	void makeNeuralNet();
+	void printNet();
 
 
 
@@ -37,12 +39,13 @@ public:
 
 private:
 	vector<NeuralNet> Nets;
-	vector<unsigned> m_layout;
+	vector<unsigned> m_layout, m_oldlayout;
 	unsigned m_reps;
 	vector<double> m_learningVals;
 	vector<double>m_ownInput;
 	int m_startLearning;
 	int m_exit=0;
+	int m_precision;
 
 };
 

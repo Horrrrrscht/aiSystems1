@@ -8,6 +8,8 @@
 
 using namespace std;
 
+//der FileReader ist für das Einlesen einer csv-Datei zuständig
+
 class FileReader
 {
 public:

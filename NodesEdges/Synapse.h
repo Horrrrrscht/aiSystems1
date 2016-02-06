@@ -1,7 +1,7 @@
 #ifndef SYNAPSE_H
 #define SYNAPSE_H
 
-
+//Die Synapse übernimmt im neuronalen Netz die Funktion einer Edge, sie beinhaltet die aktuelle Verbindugsstärke und auf Deltastrength die Verbindungsstärke vor der letzten Backpropagation
 class Synapse
 {
 public:

@@ -2,11 +2,14 @@
 #define NEURALNET_H
 
 #include <vector>
+#include <conio.h>
 
 using namespace std;
 
 class Neuron;
 typedef vector<Neuron> Layer;
+
+//das Neuronale Netz verwaltet die einzelnen Neuronen
 
 class NeuralNet
 {
@@ -16,12 +19,14 @@ public:
 	void feedForward(const vector<double> &eingabeWerte);
 	void backProp(const vector<double> &zielWerte);
 	void getResults(vector<double> &ergebnis);
-	void printNet();
+	//void printNet();
+	vector<unsigned> returnLayout() {return m_layout;}
 
 	~NeuralNet();
 
 private:
 	vector<Layer> m_layers;
+	vector<unsigned> m_layout;
 	double m_fehler;
 	double m_durchschnittsFehler;
 	double m_durchschnittsFehlerAnpassungsWert;

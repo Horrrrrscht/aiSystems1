@@ -4,7 +4,7 @@ FileReader::FileReader()
 {
 
 }
-
+//eine csv-datei wird eingelesen und in einem Vector aus Vectoren zeile für zeile gespeichert
 vector<vector<double>> FileReader::readData(string fileName) {
 
 	vector < vector <double> > daten;
@@ -27,7 +27,6 @@ vector<vector<double>> FileReader::readData(string fileName) {
 
 			while ((kommaPosition = aLine.find(',', 0)) > 0) {
 
-				//cout << aLine << comma_pos << endl;
 
 				temp.push_back(atof(aLine.substr(0, kommaPosition).c_str()));
 				aLine = aLine.substr(kommaPosition + 1, aLine.length() - 1);

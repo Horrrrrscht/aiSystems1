@@ -16,12 +16,14 @@ class Neuron;
 
 typedef vector<Neuron> Layer;
 
+//die neuronen sind die Knotenpunkte des NeuralNets. 
+
 class Neuron
 {
 public:
 	Neuron(unsigned numOutputs, unsigned myId);
-	void setOutputWert(double wert) { m_ergebnis = wert; }
-	double getOutputWert(void) const { return m_ergebnis; }
+	void setOutputWert(double wert) { m_ergebnis = wert; }															//für die Inputneuronen wichtig: Der Output des Neurons wird ohne berechnet zu werden auf den übergebenen Wert gesetzt.
+	double getOutputWert(void) const { return m_ergebnis; }															// m_ergebnis (also der vom Neuron aus seinem Input errechnete Wert) wird aus-, bzw. übergeben
 	void feedForward( Layer &prevLayer);
 	void calcOutputGradients(double zielWert);
 	void calcHiddenGradients( Layer &nextLayer);
