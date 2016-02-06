@@ -85,14 +85,28 @@ void Menu::setOwnInput()														//Der Vektor m_owninputs wird mit auf der 
 		if (m_ownInput.size() > 0) {
 			m_ownInput.clear();
 		}
-		for (unsigned n = 0; n < m_layout[0]; n++)								//je nachdem wie groß die Input-Layer ist, werden Inputs abgefragt
-		{
-			cout << "Input " << n + 1 << endl;
-			cin >> x;
-			m_ownInput.push_back(x);
+		cout << "Sepal Length in cm" << endl;
+		cin >> x;
+		m_ownInput.push_back(x);
+		cout << "Sepal Width in cm" << endl;
+		cin >> x;
+		m_ownInput.push_back(x);
+		cout << "Petal Length in cm" << endl;
+		cin >> x;
+		m_ownInput.push_back(x);
+		cout << "Petal Width in cm" << endl;
+		cin >> x;
+		m_ownInput.push_back(x);
 
 
-		}
+		//for (unsigned n = 0; n < m_layout[0]; n++)								//je nachdem wie groß die Input-Layer ist, werden Inputs abgefragt
+		//{
+		//	cout << "Input " << n + 1 << endl;
+		//	cin >> x;
+		//	m_ownInput.push_back(x);
+
+
+		//}
 
 		Nets[0].feedForward(m_ownInput);										//der Vector mit den Eingabewerten wird an die feedforward funktion des Neuralen Netzwerkes übergeben
 		vector<double> ergebnis;
@@ -101,8 +115,19 @@ void Menu::setOwnInput()														//Der Vektor m_owninputs wird mit auf der 
 		
 		for (unsigned x = 0; x < ergebnis.size(); x++) {
 			if ((int)round(ergebnis[x]) == 1) {
-				cout << "Dies ist mit " << m_precision << "% Wahrscheinlichkeit das Ergebnis Ihrer Eingabe: " << endl;
-				cout << x+1 << endl;												//Das vom neuralen Netz bestimmte Ergebnis wird in einen Wert umgewandelt und ausgegeben
+				//cout << "Dies ist mit " << m_precision << "% Wahrscheinlichkeit das Ergebnis Ihrer Eingabe: " << endl;
+				cout << "Dies ist mit " << m_precision << "% Wahrscheinlichkeit die folgende Blume: " << endl;
+				//cout << x+1 << endl;												//Das vom neuralen Netz bestimmte Ergebnis wird in einen Wert umgewandelt und ausgegeben
+				
+				
+				switch (x + 1) {
+				case 1: cout << "Iris Setosa" << endl;
+					break;
+				case 2: cout << "Iris Versicolour" << endl;
+					break;
+				case 3: cout << "Iris Virginica" << endl;
+					break;				
+				}
 
 			}
 		}
