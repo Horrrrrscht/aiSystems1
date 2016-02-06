@@ -60,9 +60,9 @@ void Menu::setLayout()
 	if (m_layout.size() > 0) {
 		m_layout.clear();
 	}
-	unsigned input, hidden, output, numhidden;
-	cout << "Number of Input Neurons:" << endl;
-	cin >> input;
+	unsigned input=4, hidden, output=4, numhidden;
+	/*cout << "Number of Input Neurons:" << endl;								//wenn man das neuronale Nets auf ein anderes Dataset anpassen möchte, muss man hier die Abfrage von input und outputneuronen wieder implementieren
+	cin >> input;*/
 	m_layout.push_back(input);
 	cout << "Number of Hidden Layers:" << endl;
 	cin >> numhidden;
@@ -71,8 +71,8 @@ void Menu::setLayout()
 		cin >> hidden;
 		m_layout.push_back(hidden);
 	}
-	cout << "Number of Output Neurons:" << endl;
-	cin >> output;
+	/*cout << "Number of Output Neurons:" << endl;
+	cin >> output;*/
 	m_layout.push_back(output);
 }
 
