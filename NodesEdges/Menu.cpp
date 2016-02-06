@@ -254,8 +254,8 @@ void Menu::printNet()
 	for (unsigned x = 0; x < Nets[0].returnLayout().size(); ++x) {
 		Menu::chart2("Anzahl der Neuronen in Layer", x+1, Nets[0].returnLayout()[x]);
 	}
-	Menu::chart("Learning Rate", m_learningVals[0]);
-	Menu::chart("Old-con-Str Faktor", m_learningVals[1]);
+	Menu::chart("Learning Rate", Nets[0].returnLearningVals()[0]);
+	Menu::chart("Old-con-Str Faktor", Nets[0].returnLearningVals()[1]);
 	Menu::chart("Umfang des naechsten Lernprozessess", m_reps);
 	Menu::chart("Genauigkeit in % ", m_precision);
 	cout << "Press any key to continue..." << endl;

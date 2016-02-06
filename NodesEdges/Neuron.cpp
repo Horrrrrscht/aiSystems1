@@ -47,10 +47,13 @@ double Neuron::funktionsAbleitung(double x) {
 
 void Neuron::calcOutputGradients(double zielWert) {
 	double delta;
-	if (-0, 2 > zielWert - m_ergebnis>0, 2) {														//Toleranzbereich von +- 0,2, damit bei kleinen Abweichungen die Steigungen nicht mehr angepasst werden
-		 delta = zielWert - m_ergebnis;
-	}
-	else  delta = 0;
+	//if (-0, 2 > zielWert - m_ergebnis>0, 2) {														//Toleranzbereich von +- 0,2, damit bei kleinen Abweichungen die Steigungen nicht mehr angepasst werden
+	//	 delta = zielWert - m_ergebnis;
+	//}
+	//else  delta = 0;
+
+	delta = zielWert - m_ergebnis;
+
 	m_steigung = delta * Neuron::funktionsAbleitung(m_ergebnis);
 }
 

@@ -19,14 +19,11 @@ public:
 	Menu();
 	vector<unsigned>getLayout() { return m_layout; }
 	void setLayout();
-	unsigned getReps() { return m_reps; }
 	void setReps();
 	void chart(const char* Funktion, double Eingabe);
 	void chart2(const char* Funktion, unsigned Eingabe, unsigned Eingabe2);
 	void ui();
-	vector<double> getLearningVals() { return m_learningVals; }
 	void setLearningVals();
-	vector<double>getOwnInput() { return m_ownInput; }
 	void setOwnInput();
 	int exit() { return m_exit; }
 	void startLearning();

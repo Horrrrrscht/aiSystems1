@@ -20,13 +20,15 @@ public:
 	void backProp(const vector<double> &zielWerte);
 	void getResults(vector<double> &ergebnis);
 	//void printNet();
-	vector<unsigned> returnLayout() {return m_layout;}
+	vector<unsigned> returnLayout() { return m_layout; }
+	vector<double> returnLearningVals() { return m_learningVals; }
 
 	~NeuralNet();
 
 private:
 	vector<Layer> m_layers;
 	vector<unsigned> m_layout;
+	vector<double> m_learningVals;
 	double m_fehler;
 	double m_durchschnittsFehler;
 	double m_durchschnittsFehlerAnpassungsWert;

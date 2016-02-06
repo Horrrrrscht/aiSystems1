@@ -18,6 +18,12 @@ NeuralNet::NeuralNet(const vector<unsigned> &layout , vector<double>learningVals
 	for (unsigned looper = 0; looper < layout.size(); looper++) {
 		m_layout.push_back(layout[looper]);
 	}
+	for (unsigned looper = 0; looper < learningVals.size(); looper++) {
+
+		m_learningVals.push_back(learningVals[looper]);
+	}
+	
+	
 
 
 	unsigned layerAnz = layout.size();
