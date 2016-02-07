@@ -16,7 +16,7 @@ void Menu::chart(const char* Funktion ,  double Eingabe)											//Festelgung 
 		<< std::setw(9) << Eingabe << " | " << ::endl;
 
 }
-void Menu::chart2(const char* Funktion, unsigned Eingabe, unsigned Eingabe2)						//Festelgung des Layouts des Menüs
+void Menu::chart(const char* Funktion, unsigned Eingabe, unsigned Eingabe2)						//Festelgung des Layouts des Menüs
 {
 	cout << "| " << std::setw(32) << Funktion <<" "<< setw(2) << Eingabe<< " | "
 		<< std::setw(9) << Eingabe2 << " | " << ::endl;
@@ -252,7 +252,7 @@ void Menu::printNet()
 	system("cls");
 	cout << "Neural Net:" << endl;
 	for (unsigned x = 0; x < Nets[0].returnLayout().size(); ++x) {
-		Menu::chart2("Anzahl der Neuronen in Layer", x+1, Nets[0].returnLayout()[x]);
+		Menu::chart("Anzahl der Neuronen in Layer", x+1, Nets[0].returnLayout()[x]);
 	}
 	Menu::chart("Learning Rate", Nets[0].returnLearningVals()[0]);
 	Menu::chart("Old-con-Str Faktor", Nets[0].returnLearningVals()[1]);

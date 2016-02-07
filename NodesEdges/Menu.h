@@ -21,7 +21,7 @@ public:
 	void setLayout();
 	void setReps();
 	void chart(const char* Funktion, double Eingabe);
-	void chart2(const char* Funktion, unsigned Eingabe, unsigned Eingabe2);
+	void chart(const char* Funktion, unsigned Eingabe, unsigned Eingabe2);
 	void ui();
 	void setLearningVals();
 	void setOwnInput();
