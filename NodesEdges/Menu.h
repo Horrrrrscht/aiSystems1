@@ -36,11 +36,10 @@ public:
 
 private:
 	vector<NeuralNet> Nets;
-	vector<unsigned> m_layout, m_oldlayout;
+	vector<unsigned> m_layout;
 	unsigned m_reps;
 	vector<double> m_learningVals;
 	vector<double>m_ownInput;
-	int m_startLearning;
 	int m_exit=0;
 	int m_precision;
 
